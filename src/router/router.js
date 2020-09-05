@@ -27,9 +27,14 @@ let Router = new VueRouter({
             }
         }
     },
-    routes: []
+    routes: [],
+    mode: 'history'
 });
 AvueRouter.install(Vue, Router, Store, i18n);
 Router.$avueRouter.formatRoutes(Store.state.user.menu, true);
 Router.addRoutes([...PageRouter, ...ViewsRouter]);
-export default Router;
+// export default Router;
+
+export default function createRouter () {
+    return Router
+}

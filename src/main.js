@@ -2,10 +2,10 @@ import Vue from 'vue';
 import axios from './router/axios';
 import VueAxios from 'vue-axios';
 import App from './App';
-import router from './router/router';
+import createRouter from './router/router';
 import './permission'; // 权限
 import './error'; // 日志
-import store from './store';
+import createStore from './store';
 import { loadStyle } from './util/util'
 import * as urls from '@/config/env';
 import Element from 'element-ui';
@@ -42,9 +42,21 @@ iconfontVersion.forEach(ele => {
 
 Vue.config.productionTip = false;
 
-new Vue({
-    router,
-    store,
-    i18n,
-    render: h => h(App)
-}).$mount('#app')
+// new Vue({
+//     router,
+//     store,
+//     i18n,
+//     render: h => h(App)
+// }).$mount('#app')
+
+export function createApp () {
+    const router = createRouter()
+    const store = createStore()
+    const app = new Vue({
+      router,
+      store,
+      i18n,
+      render: h => h(App)
+    })
+    return { app, router, store }
+  }

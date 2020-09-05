@@ -8,34 +8,52 @@
     "lint": "vue-cli-service lint",
     "analyz": "npm_config_report=true npm run build",
     "test:unit": "vue-cli-service test:unit",
-    "test:e2e": "vue-cli-service test:e2e"
+    "test:e2e": "vue-cli-service test:e2e",
+    "serve:ssr": "nodemon server.js",
+    "build:ssr": "rimraf dist && npm run build:client && npm run build:server",
+    "build:client": "cross-env NODE_ENV=production webpack --color --config build/webpack.client.config.js --progress --hide-modules",
+    "build:server": "cross-env NODE_ENV=production webpack --color --config build/webpack.server.config.js --progress --hide-modules"
   },
   "dependencies": {
     "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
     "classlist-polyfill": "^1.2.0",
+    "compression": "^1.7.4",
     "element-ui": "^2.12.0",
+    "express": "^4.17.1",
     "js-base64": "^2.5.1",
     "js-cookie": "^2.2.0",
     "mockjs": "^1.0.1-beta3",
     "node-gyp": "^5.0.6",
+    "nodemon": "^2.0.4",
     "nprogress": "^0.2.0",
+    "route-cache": "^0.4.5",
     "script-loader": "^0.7.2",
+    "serve-favicon": "^2.5.0",
     "vue": "^2.6.10",
     "vue-axios": "^2.1.2",
     "vue-i18n": "^8.7.0",
     "vue-router": "^3.0.1",
-    "vuex": "^3.1.1"
+    "vue-server-renderer": "^2.6.12",
+    "vuex": "^3.1.1",
+    "vuex-router-sync": "^5.0.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.1.1",
     "@vue/cli-plugin-eslint": "^3.1.5",
     "@vue/cli-service": "^3.1.4",
     "chai": "^4.1.2",
+    "chokidar": "^3.4.2",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "friendly-errors-webpack-plugin": "^1.7.0",
     "node-sass": "^4.12.0",
+    "rimraf": "^3.0.2",
     "sass-loader": "^7.0.1",
     "vue-template-compiler": "^2.5.17",
-    "webpack-bundle-analyzer": "^3.0.3"
+    "webpack-bundle-analyzer": "^3.0.3",
+    "webpack-dev-middleware": "^3.7.2",
+    "webpack-hot-middleware": "^2.25.0",
+    "webpack-node-externals": "^2.5.2"
   },
   "lint-staged": {
     "*.js": [
